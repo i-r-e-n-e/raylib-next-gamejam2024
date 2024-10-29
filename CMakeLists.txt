@@ -21,6 +21,8 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
 endif()
 
 add_executable(${PROJECT_NAME} 
+    include/asset_loader.h
+    src/asset_loader.cpp
     src/main.cpp
 )
 add_compile_options(-std=c++20)
