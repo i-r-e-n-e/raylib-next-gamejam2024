@@ -2,6 +2,12 @@ cmake_minimum_required(VERSION 3.11) # FetchContent is available in 3.11+
 project(main)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+
+if (EMSCRIPTEN)
+  set(PLATFORM "Web")
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} --preload-file ${CMAKE_CURRENT_LIST_DIR}/assets/@assets/")
+endif()
 
 set(RAYLIB_VERSION 5.0)
 find_package(raylib ${RAYLIB_VERSION} QUIET) # QUIET or REQUIRED
@@ -21,6 +27,8 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
 endif()
 
 add_executable(${PROJECT_NAME} 
+    include/asset_loader.h
+    src/asset_loader.cpp
     src/main.cpp
 )
 add_compile_options(-std=c++20)
