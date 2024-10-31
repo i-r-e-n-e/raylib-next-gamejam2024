@@ -20,10 +20,10 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
   endif()
 endif()
 
+add_compile_options(-std=c++20)
 add_executable(${PROJECT_NAME} 
     src/main.cpp
 )
-add_compile_options(-std=c++20)
 target_link_libraries(${PROJECT_NAME} raylib)
 
 if (${PLATFORM} STREQUAL "Web")
