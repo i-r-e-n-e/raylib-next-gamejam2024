@@ -28,7 +28,9 @@ endif()
 
 add_executable(${PROJECT_NAME} 
     include/asset_loader.h
+    include/screen.h
     src/asset_loader.cpp
+    src/screen.cpp
     src/main.cpp
 )
 add_compile_options(-std=c++20)
