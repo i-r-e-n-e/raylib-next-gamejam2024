@@ -1,4 +1,6 @@
 #include "raylib.h"
+#include "../include/asset_loader.h"
+
 
 int main(void) {
     InitWindow(800, 600, "Gamejam");
@@ -6,6 +8,7 @@ int main(void) {
     while (!WindowShouldClose()) {
         BeginDrawing();
         ClearBackground(WHITE);
+        DrawRectangleRec(StartSrcRect, BLUE);
         EndDrawing();
     }
     CloseWindow();
