@@ -4,22 +4,22 @@
 Screen::Screen(void) {}
 
 void Screen::Update() {
-    if (IsKeyPressed(KEY_ONE)) {
-        _screenType = ScreenType::Menu;
-    }
-    if (IsKeyPressed(KEY_TWO)) {
-        _screenType = ScreenType::LevelSelect;
-    }
-    if (IsKeyPressed(KEY_THREE)) {
-        _screenType = ScreenType::Gameplay;
+    if (_screenType == ScreenType::StartPage) {
+        Vector2 cursor = GetMousePosition();
+        if (CheckCollisionPointRec(cursor, button)) {
+            if (IsMouseButtonDown(MOUSE_LEFT_BUTTON)) {
+                _screenType = ScreenType::LevelSelect;
+            }
+        }
     }
 }
 
 void Screen::Draw(void) {
     switch (_screenType) {
-        case ScreenType::Menu:
+        case ScreenType::StartPage:
         {
-            DrawText("Menu", 0, 0, 20, BLACK);
+            DrawRectangleRec(button, buttonColor);
+            DrawText("StartPage", 0, 0, 20, BLACK);
             break;
         }
         case ScreenType::LevelSelect:
